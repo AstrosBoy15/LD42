@@ -37,22 +37,22 @@ public class Player extends Entity {
 
 		Vector2f direction = new Vector2f();
 		float delta = timer.getDelta();
-		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_A)) {
-			currentSpeed.x -= speed * delta * 100;
-			direction.x--;
-		}
-		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_W)) {
-			currentSpeed.y += speed * delta * 100;
-			direction.y++;
-		}
-		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_S)) {
-			currentSpeed.y -= speed * delta * 100;
-			direction.y--;
-		}
-		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_D)) {
-			currentSpeed.x += speed * delta * 100;
-			direction.x++;
-		}
+//		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_A)) {
+//			currentSpeed.x -= speed * delta * 100;
+//			direction.x--;
+//		}
+//		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_W)) {
+//			currentSpeed.y += speed * delta * 100;
+//			direction.y++;
+//		}
+//		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_S)) {
+//			currentSpeed.y -= speed * delta * 100;
+//			direction.y--;
+//		}
+//		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_D)) {
+//			currentSpeed.x += speed * delta * 100;
+//			direction.x++;
+//		}
 
 		if(direction.x == 0 && direction.y == 0) {
 			currentAnimation = ANIMATION_IDLE;

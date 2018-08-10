@@ -3,8 +3,8 @@ package com.draglantix.engine;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWScrollCallback;
 
-import com.draglantix.entities.Player;
 import com.draglantix.main.Configs;
 import com.draglantix.window.Window;
 
@@ -12,15 +12,15 @@ public class Camera {
 
 	private Vector2f position;
 	private float roll, lerp, zoom;
+	private Vector2f lastMousePosition;
+	private boolean isMouseClicked = false;
+	private float ypos;
 
-	private Player player;
-
-	public Camera(Vector2f position, float roll, float zoom, float lerp, Player player) {
+	public Camera(Vector2f position, float roll, float zoom, float lerp) {
 		this.position = position;
 		this.roll = roll;
 		this.zoom = zoom;
 		this.lerp = lerp;
-		this.player = player;
 	}
 
 	public void update() {
@@ -28,19 +28,26 @@ public class Camera {
 	}
 
 	public void move() {
-		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_R)) {
-			roll += 1f;
+
+		updateZoom();
+
+		Vector2f delta = new Vector2f();
+		if (Window.getInput().isMouseButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) {
+			if (!isMouseClicked) {
+				lastMousePosition = Window.getInput().getMousePos();
+				isMouseClicked = true;
+			}
+			Vector2f currentPos = Window.getInput().getMousePos();
+			delta.x = lastMousePosition.x - currentPos.x;
+			delta.y = currentPos.y - lastMousePosition.y;
+			lastMousePosition = currentPos;
+		} else {
+			isMouseClicked = false;
 		}
 
-//		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_Q) && zoom < 2) {
-//			zoom += 0.01f;
-//		}
-//
-//		if(Window.getInput().isKeyDown(GLFW.GLFW_KEY_E) && zoom > -3) {
-//			zoom -= 0.01f;
-//		}
+		Vector2f tempPosition = position.add(delta, new Vector2f());
 
-		position.lerp(player.getPosition(), lerp);
+		position.lerp(tempPosition, lerp);
 		correctCamera();
 	}
 
@@ -52,14 +59,27 @@ public class Camera {
 		return view;
 	}
 
+	private void updateZoom() {
+		ypos = 0;
+		GLFW.glfwSetScrollCallback(Window.getWindow(), GLFWScrollCallback.create((window, xoffset, yoffset) -> {
+			ypos = (float) yoffset;
+			zoom += ypos * 0.075f;
+		}));
+		if (zoom < -1) {
+			zoom = -1;
+		} else if (zoom > 1) {
+			zoom = 1;
+		}
+	}
+
 	private void correctCamera() {
-		if(position.x > Configs.worldWidth * Configs.worldScale - Window.getWidth() / 2)
+		if (position.x > Configs.worldWidth * Configs.worldScale - Window.getWidth() / 2)
 			position.x = Configs.worldWidth * Configs.worldScale - Window.getWidth() / 2;
-		if(position.x < -Configs.worldWidth * Configs.worldScale + Window.getWidth() / 2)
+		if (position.x < -Configs.worldWidth * Configs.worldScale + Window.getWidth() / 2)
 			position.x = -Configs.worldWidth * Configs.worldScale + Window.getWidth() / 2;
-		if(position.y > Configs.worldHeight * Configs.worldScale - Window.getHeight() / 2)
+		if (position.y > Configs.worldHeight * Configs.worldScale - Window.getHeight() / 2)
 			position.y = Configs.worldHeight * Configs.worldScale - Window.getHeight() / 2;
-		if(position.y < -Configs.worldHeight * Configs.worldScale + Window.getHeight() / 2)
+		if (position.y < -Configs.worldHeight * Configs.worldScale + Window.getHeight() / 2)
 			position.y = -Configs.worldHeight * Configs.worldScale + Window.getHeight() / 2;
 
 	}
@@ -69,7 +89,7 @@ public class Camera {
 	}
 
 	public float getZoom() {
-		return (float) Math.exp(zoom);
+		return (float) Math.exp(-zoom);
 	}
 
 }

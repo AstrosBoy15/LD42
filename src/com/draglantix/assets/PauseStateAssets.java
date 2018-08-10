@@ -28,6 +28,7 @@ public class PauseStateAssets {
 	public void cleanUp() {
 		buffer.cleanUp();
 		buffer2.cleanUp();
+		processing.cleanUp();
 	}
 
 }

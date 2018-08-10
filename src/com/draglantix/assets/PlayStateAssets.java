@@ -118,7 +118,7 @@ public class PlayStateAssets {
 	}
 
 	public void createCamera() {
-		camera = new Camera(new Vector2f(0, 0), 0, 0, 0.07f, player);
+		camera = new Camera(new Vector2f(0, 0), 0, 0, .5f);
 		isCameraCreated = true;
 	}
 	

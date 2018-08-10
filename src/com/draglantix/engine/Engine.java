@@ -146,7 +146,6 @@ public class Engine {
 		mapRenderer.cleanUp();
 		tileRenderer.cleanUp();
 		fontRenderer.cleanUp();
-		assets.pauseAssets.processing.cleanUp();
 	}
 
 	private static void tickGuis() {
@@ -168,7 +167,7 @@ public class Engine {
 	}
 
 	private static void tickTiles() {
-		for(Tile tile : getCurrentTiles(assets.playAssets.tileMap, assets.playAssets.player.getPosition())) {
+		for(Tile tile : getCurrentTiles(assets.playAssets.tileMap, assets.playAssets.camera.getPosition())) {
 			tile.tick();
 		}
 	}
@@ -184,7 +183,7 @@ public class Engine {
 	}
 
 	private static void renderTiles() {
-		tileRenderer.renderTiles(getCurrentTiles(assets.playAssets.tileMap, assets.playAssets.player.getPosition()));
+		tileRenderer.renderTiles(getCurrentTiles(assets.playAssets.tileMap, assets.playAssets.camera.getPosition()));
 	}
 
 	/*
@@ -289,8 +288,9 @@ public class Engine {
 	}
 
 	public static List<Tile> getCurrentTiles(TileMap map, Vector2f pos) {
-		int numTilesX = Configs.WIDTH / Configs.TILE_SIZE / Configs.worldScale + 4;
-		int numTilesY = Configs.HEIGHT / Configs.TILE_SIZE / Configs.worldScale + 4;
+		int numTilesX = (int) (assets.playAssets.camera.getZoom() * Configs.WIDTH / Configs.TILE_SIZE / Configs.worldScale + 4);
+		int numTilesY = (int) (assets.playAssets.camera.getZoom() * Configs.HEIGHT / Configs.TILE_SIZE
+				/ Configs.worldScale + 4);
 
 		List<Tile> tiles = new ArrayList<Tile>();
 
