@@ -28,7 +28,7 @@ public class IntroStateAssets {
 		fontTex = new Texture("res/font/glyphSheet.png");
 		introSplash = new Gui(assets.loader.loadTexture(draglantixTex), new Vector2f(0, 0), new Vector2f(0, 0),
 				new Vector2f(Configs.WIDTH / 2 * .85f, Configs.HEIGHT / 2 * .1f), 0, new Vector3f(1, 1, 1), false,
-				assets);
+				false, assets);
 		Engine.addGuis(introSplash);
 	}
 

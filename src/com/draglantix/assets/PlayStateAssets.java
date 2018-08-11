@@ -3,10 +3,9 @@ package com.draglantix.assets;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-import com.draglantix.buttonComponents.ButtonTest;
+import com.draglantix.buildings.Building;
 import com.draglantix.engine.Camera;
 import com.draglantix.engine.Engine;
-import com.draglantix.entities.Player;
 import com.draglantix.guis.Gui;
 import com.draglantix.main.Configs;
 import com.draglantix.maps.Map;
@@ -21,7 +20,7 @@ import com.draglantix.world.World;
 
 public class PlayStateAssets {
 
-	public Player player;
+	public Building player;
 
 	public Camera camera;
 
@@ -74,8 +73,8 @@ public class PlayStateAssets {
 //		Configs.worldWidth = mapTex.getWidth() * Configs.worldScale * 2;
 //		Configs.worldHeight = mapTex.getHeight() * Configs.worldScale * 2;
 
-		Configs.worldWidth = 384 * Configs.worldScale * 8;
-		Configs.worldHeight = 384 * Configs.worldScale * 8;
+		Configs.worldWidth = 384 * Configs.worldScale;
+		Configs.worldHeight = 384 * Configs.worldScale;
 
 		tileSet = new SpriteSheet("res/textures/world/tileSet.png");
 
@@ -109,19 +108,13 @@ public class PlayStateAssets {
 		playerIdle = new Animation(2, 2, "res/textures/player/idle");
 
 		world = new World(assets);
-
-		button = new Gui(assets.loader.loadTexture(squareTex),
-				new Vector2f(-Configs.WIDTH / 2 + 100, Configs.HEIGHT / 2 - 50), new Vector2f(0, 0),
-				new Vector2f(100, 50), 1, Configs.COLOUR_NULL, true, assets);
-		button.setComponent(new ButtonTest());
-		// Engine.addGuis(button);
 	}
 
 	public void createCamera() {
 		camera = new Camera(new Vector2f(0, 0), 0, 0, .5f);
 		isCameraCreated = true;
 	}
-	
+
 	public void cleanUp() {
 		worldBuffer.cleanUp();
 	}

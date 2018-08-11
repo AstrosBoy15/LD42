@@ -1,14 +1,14 @@
-package com.draglantix.entities;
+package com.draglantix.buildings;
 
 import org.joml.Matrix4f;
 
 import com.draglantix.engine.ShaderProgram;
 
-public class EntityShader extends ShaderProgram {
+public class BuildingShader extends ShaderProgram {
 
 	private int location_transformationMatrix;
 
-	public EntityShader(String key) {
+	public BuildingShader(String key) {
 		super(key);
 	}
 

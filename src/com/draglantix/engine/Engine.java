@@ -10,9 +10,9 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import com.draglantix.assets.Assets;
-import com.draglantix.entities.Entity;
-import com.draglantix.entities.EntityRenderer;
-import com.draglantix.entities.EntityShader;
+import com.draglantix.buildings.Building;
+import com.draglantix.buildings.BuildingRenderer;
+import com.draglantix.buildings.BuildingShader;
 import com.draglantix.font.Font;
 import com.draglantix.font.FontRenderer;
 import com.draglantix.font.FontShader;
@@ -33,9 +33,9 @@ public class Engine {
 
 	private static List<Gui> guis;
 	private static GuiRenderer guiRenderer;
-
-	private static List<Entity> entities;
-	private static EntityRenderer entityRenderer;
+	
+	private static List<Building> buildings;
+	private static BuildingRenderer buildingRenderer;
 
 	private static List<Tile> tiles;
 	private static TileRenderer tileRenderer;
@@ -60,8 +60,8 @@ public class Engine {
 		guis = new ArrayList<Gui>();
 		guiRenderer = new GuiRenderer(new GuiShader("gui"), assets);
 
-		entities = new ArrayList<Entity>();
-		entityRenderer = new EntityRenderer(new EntityShader("entity"), assets);
+		buildings = new ArrayList<Building>();
+		buildingRenderer = new BuildingRenderer(new BuildingShader("entity"), assets);
 
 		tiles = new ArrayList<Tile>();
 		tileRenderer = new TileRenderer(new TileShader("tile"), assets);
@@ -84,7 +84,7 @@ public class Engine {
 	}
 
 	public static void tickPlay() {
-		tickEntities();
+		tickBuildings();
 		tickGuis();
 		tickMaps();
 		tickFonts();
@@ -108,7 +108,7 @@ public class Engine {
 	public static void renderPlay() {
 		// renderMap(false);
 		renderTiles();
-		renderEntities();
+		renderBuildings();
 		renderFonts();
 		renderGuis();
 		// renderMap(true);
@@ -117,7 +117,7 @@ public class Engine {
 	public static void renderPause() {
 		// renderMap(false);
 		renderTiles();
-		renderEntities();
+		renderBuildings();
 		renderGuis();
 		renderFonts();
 		// renderMap(true);
@@ -142,7 +142,7 @@ public class Engine {
 
 	public static void cleanUp() {
 		guiRenderer.cleanUp();
-		entityRenderer.cleanUp();
+		buildingRenderer.cleanUp();
 		mapRenderer.cleanUp();
 		tileRenderer.cleanUp();
 		fontRenderer.cleanUp();
@@ -154,9 +154,9 @@ public class Engine {
 		}
 	}
 
-	private static void tickEntities() {
-		for(Entity entity : entities) {
-			entity.tick();
+	private static void tickBuildings() {
+		for(Building building : buildings) {
+			building.tick();
 		}
 	}
 
@@ -195,8 +195,8 @@ public class Engine {
 		fontRenderer.renderFonts(fonts);
 	}
 
-	private static void renderEntities() {
-		entityRenderer.renderEntities(entities);
+	private static void renderBuildings() {
+		buildingRenderer.renderBuildings(buildings);
 	}
 
 	public static void addGuis(Gui... guis) {
@@ -205,9 +205,9 @@ public class Engine {
 		}
 	}
 
-	public static void addEntities(Entity... entities) {
-		for(Entity addRequest : entities) {
-			Engine.entities.add(addRequest);
+	public static void addBuildings(Building... buildings) {
+		for(Building addRequest : buildings) {
+			Engine.buildings.add(addRequest);
 		}
 	}
 
@@ -229,9 +229,9 @@ public class Engine {
 		}
 	}
 
-	public static void removeEntities(Entity... entities) {
-		for(Entity addRequest : entities) {
-			Engine.entities.remove(addRequest);
+	public static void removeEntities(Building... buildings) {
+		for(Building addRequest : buildings) {
+			Engine.buildings.remove(addRequest);
 		}
 	}
 
@@ -259,8 +259,8 @@ public class Engine {
 		}
 	}
 
-	public static List<Entity> getEntities() {
-		return entities;
+	public static List<Building> getBuildings() {
+		return buildings;
 	}
 
 	public static List<Gui> getGuis() {

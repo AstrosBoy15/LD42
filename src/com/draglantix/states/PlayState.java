@@ -26,7 +26,7 @@ public class PlayState extends GameState {
 		if(Window.getInput().isKeyPressed(GLFW.GLFW_KEY_P)) {
 			gsm.setState(State.PAUSE);
 		}
-		assets.playAssets.camera.update();
+		assets.playAssets.world.tick();
 		Engine.tickPlay();
 	}
 
