@@ -84,10 +84,6 @@ public class World {
 	public void tick() {
 		// Left mouse button
 		if (Window.getInput().isMouseButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) {
-			if (currentSelectedBuilding != null) {
-				currentSelectedBuilding.removeGui();
-				currentSelectedBuilding = null;
-			}
 			if (!isMouseLeftButtonDown) {
 				for (Gui gui : Engine.getGuis()) {
 					if (gui.getBounding() != null) {
@@ -100,6 +96,10 @@ public class World {
 				}
 			}
 			isMouseLeftButtonDown = true;
+			if (currentSelectedBuilding != null && !hasCollidedRight) {
+				currentSelectedBuilding.removeGui();
+				currentSelectedBuilding = null;
+			}
 		} else {
 			isMouseLeftButtonDown = false;
 			hasCollidedRight = false;

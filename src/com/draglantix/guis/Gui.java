@@ -93,29 +93,4 @@ public class Gui extends ObjectData {
 		return isStatic;
 	}
 
-	public void createMultipleBoxes(int num) {
-		boundingList.remove(super.bounding);
-		Vector2f tempScale = new Vector2f(scale.x / num, scale.y);
-		if (num % 2 == 0) {
-
-		} else {
-			for (int i = -num / 2; i < num / 2; i++) {
-				Vector2f pos = new Vector2f(position.x + tempScale.x * i, position.y);
-				Polygon poly = new Polygon(
-						new float[] { pos.x + tempScale.x, pos.x + tempScale.x, pos.x - tempScale.x,
-								pos.x - tempScale.x },
-						new float[] { -pos.y + tempScale.y, -pos.y - tempScale.y, -pos.y - tempScale.y,
-								-pos.y + tempScale.y, },
-						false);
-				addBounding(poly);
-			}
-		}
-	}
-
-	public void addBounding(Polygon... bounding) {
-		for (Polygon polygon : bounding) {
-			boundingList.add(polygon);
-		}
-	}
-
 }

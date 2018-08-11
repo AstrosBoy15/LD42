@@ -2,12 +2,14 @@ package com.draglantix.buttonComponents;
 
 public class ButtonTest extends ButtonComponent {
 
-	public ButtonTest() {
-
+	private int num;
+	
+	public ButtonTest(int num) {
+		this.num = num;
 	}
 
 	public void update() {
-		System.out.println("Works!");
+		System.out.println(num);
 	}
 
 }

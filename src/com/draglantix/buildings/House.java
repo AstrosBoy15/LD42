@@ -4,6 +4,7 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import com.draglantix.assets.Assets;
+import com.draglantix.buttonComponents.ButtonTest;
 import com.draglantix.collsion.Polygon;
 import com.draglantix.engine.Engine;
 import com.draglantix.guis.Gui;
@@ -20,17 +21,14 @@ public class House extends Building {
 				new float[] { position.y - scale.y * Configs.worldScale, position.y - scale.y * Configs.worldScale,
 						position.y + scale.y * Configs.worldScale },
 				false), assets);
-		gui = new Gui(assets.playAssets.squareTex.getTextureID(),
-				new Vector2f(position.x + guiScale.x / 2 * Configs.worldScale,
-						position.y - guiScale.y / 2 * Configs.worldScale),
-				new Vector2f(0, 0), guiScale, 0.75f, new Vector3f(.15f, .15f, .15f), false, true, assets);
+		createMultiGUI();
 	}
 
 	public void update() {
-		Engine.addGuis(gui);
+		Engine.addGuis(guis);
 	}
 
 	public void removeGui() {
-		Engine.removeGuis(gui);
+		Engine.removeGuis(guis);
 	}
 }
