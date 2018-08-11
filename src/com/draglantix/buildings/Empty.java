@@ -10,23 +10,23 @@ import com.draglantix.font.Font;
 import com.draglantix.guis.Gui;
 import com.draglantix.main.Configs;
 
-public class House extends Building {
+public class Empty extends Building {
 
 	private static final int NUM_ANIMATIONS = 0;
-	protected final static int NUM_OF_GUIS = 5;
+	protected final static int NUM_OF_GUIS = 2;
 
 	private boolean isSelected = false;
 
-	public House(int texture, Vector2f position, Vector2f rotation, Vector2f scale, Assets assets) {
+	public Empty(int texture, Vector2f position, Vector2f rotation, Vector2f scale, Assets assets) {
 		super(texture, NUM_ANIMATIONS, position, rotation, scale, new Polygon(
 				new float[] { position.x + scale.x * Configs.worldScale, position.x - scale.x * Configs.worldScale,
 						position.x - scale.x * Configs.worldScale },
 				new float[] { position.y - scale.y * Configs.worldScale, position.y - scale.y * Configs.worldScale,
 						position.y + scale.y * Configs.worldScale },
-				false), "House", HOUSE, assets);
+				false), "Empty", EMPTY, assets);
 		guis = new Gui[NUM_OF_GUIS];
 		fonts = new Font[NUM_OF_GUIS];
-		createMultiGUI();
+		createEmptyGUI();
 	}
 
 	@Override

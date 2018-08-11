@@ -109,8 +109,8 @@ public class Engine {
 		// renderMap(false);
 		renderTiles();
 		renderBuildings();
-		renderFonts();
 		renderGuis();
+		renderFonts();
 		// renderMap(true);
 	}
 
@@ -229,7 +229,7 @@ public class Engine {
 		}
 	}
 
-	public static void removeEntities(Building... buildings) {
+	public static void removeBuildings(Building... buildings) {
 		for(Building addRequest : buildings) {
 			Engine.buildings.remove(addRequest);
 		}

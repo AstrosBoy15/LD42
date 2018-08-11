@@ -8,6 +8,7 @@ import org.joml.Vector3f;
 
 import com.draglantix.assets.Assets;
 import com.draglantix.buttonComponents.ButtonComponent;
+import com.draglantix.buttonComponents.ButtonBuilding;
 import com.draglantix.collsion.Polygon;
 import com.draglantix.main.Configs;
 import com.draglantix.util.ObjectData;
@@ -21,6 +22,8 @@ public class Gui extends ObjectData {
 
 	private ButtonComponent component;
 	private boolean isStatic;
+
+	private Vector3f currentColour;
 
 	private List<Polygon> boundingList;
 
@@ -39,7 +42,12 @@ public class Gui extends ObjectData {
 	}
 
 	public void tick() {
-
+		if (component != null) {
+			component.tick();
+			if (component instanceof ButtonBuilding) {
+				currentColour = ((ButtonBuilding) component).getColour();
+			}
+		}
 	}
 
 	public boolean checkForCollision() {
@@ -68,6 +76,10 @@ public class Gui extends ObjectData {
 	public float getAlpha() {
 		return alpha;
 	}
+	
+	public Assets getAssets() {
+		return assets;
+	}
 
 	public void setAlpha(float alpha) {
 		this.alpha = alpha;
@@ -87,6 +99,10 @@ public class Gui extends ObjectData {
 
 	public Vector3f getColour() {
 		return colour;
+	}
+	
+	public Vector3f getCurrentColour() {
+		return currentColour;
 	}
 
 	public boolean isStatic() {

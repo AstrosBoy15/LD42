@@ -20,6 +20,8 @@ public class Font extends ObjectData {
 	private int rows;
 
 	private int maxCharLength;
+	
+	private boolean isStatic;
 
 	String file;
 	private String[] tokens;
@@ -27,11 +29,12 @@ public class Font extends ObjectData {
 	private List<Integer> wordLengths = new ArrayList<Integer>();
 
 	public Font(int texture, String fntPath, String msg, Vector2f position, float scale, int rows, int maxCharLength,
-			Vector3f color, Assets assets) {
+			Vector3f color, boolean isStatic, Assets assets) {
 		super(texture, 0, position, new Vector2f(0, 0), new Vector2f(scale), null, assets);
 		this.rows = rows;
 		this.color = color;
 		this.maxCharLength = maxCharLength;
+		this.isStatic = isStatic;
 
 		textureIndex = new int[msg.length()];
 
@@ -49,6 +52,10 @@ public class Font extends ObjectData {
 				currentWord = 0;
 			}
 			currentWord++;
+		}
+		
+		if(wordLengths.isEmpty()) {
+			wordLengths.add(currentWord);
 		}
 
 		file = Reader.loadFileAsString(fntPath);
@@ -91,6 +98,14 @@ public class Font extends ObjectData {
 
 	public Vector3f getColor() {
 		return color;
+	}
+	
+	public void setColor(Vector3f colour) {
+		color = colour;
+	}
+	
+	public boolean isStatic() {
+		return isStatic;
 	}
 
 }

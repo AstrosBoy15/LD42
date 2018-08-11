@@ -7,6 +7,7 @@ import org.lwjgl.glfw.GLFW;
 
 import com.draglantix.assets.Assets;
 import com.draglantix.buildings.Building;
+import com.draglantix.buildings.Empty;
 import com.draglantix.buildings.House;
 import com.draglantix.engine.Engine;
 import com.draglantix.guis.Gui;
@@ -38,14 +39,14 @@ public class World {
 
 		assets.playAssets.createCamera();
 
-		House sheep = new House(assets.playAssets.squareTex.getTextureID(), new Vector2f(64, 64), new Vector2f(0, 0),
-				new Vector2f(assets.playAssets.triangleTex.getWidth(), assets.playAssets.triangleTex.getHeight()),
+		Empty sheep = new Empty(assets.playAssets.squareTex.getTextureID(), new Vector2f(64, 64), new Vector2f(0, 0),
+				new Vector2f(assets.playAssets.squareTex.getWidth(), assets.playAssets.squareTex.getHeight()),
 				assets);
 		House sheep2 = new House(assets.playAssets.squareTex.getTextureID(), new Vector2f(0, 128), new Vector2f(0, 0),
-				new Vector2f(assets.playAssets.triangleTex.getWidth(), assets.playAssets.triangleTex.getHeight()),
+				new Vector2f(assets.playAssets.squareTex.getWidth(), assets.playAssets.squareTex.getHeight()),
 				assets);
 		House sheep3 = new House(assets.playAssets.squareTex.getTextureID(), new Vector2f(128, 0), new Vector2f(0, 0),
-				new Vector2f(assets.playAssets.triangleTex.getWidth(), assets.playAssets.triangleTex.getHeight()),
+				new Vector2f(assets.playAssets.squareTex.getWidth(), assets.playAssets.squareTex.getHeight()),
 				assets);
 		Engine.addBuildings(sheep, sheep2, sheep3);
 

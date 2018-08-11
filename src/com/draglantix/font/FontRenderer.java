@@ -67,7 +67,7 @@ public class FontRenderer {
 						msg.getPosition().y + returnLength * 10 - msg.getScale().y);
 				msg.updateTransformationMatrix(finalPos, msg.getRotation(), msg.getScale());
 				shader.loadOffset(msg.getTextureXOffset(i), msg.getTextureYOffset(i));
-				shader.loadTransformationMatrix(Maths.getFinalMatrix(msg.getTransformationMatrix(), assets, false));
+				shader.loadTransformationMatrix(Maths.getFinalMatrix(msg.getTransformationMatrix(), assets, msg.isStatic()));
 				GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, Engine.quad.getVertexCount());
 
 				currentLineIndex++;
