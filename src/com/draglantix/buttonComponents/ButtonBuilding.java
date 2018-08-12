@@ -20,9 +20,8 @@ public class ButtonBuilding extends ButtonComponent {
 
 	public static final int BLANK = 0;
 	public static final int UPGRADE = 1;
-	public static final int IDK = 2;
-	public static final int COLLECT = 3;
-	public static final int DESTROY = 4;
+	public static final int COLLECT = 2;
+	public static final int DESTROY = 3;
 	public static final int BUILD = 5;
 	
 	public ButtonBuilding(int num, Gui gui, Building building) {
@@ -46,9 +45,6 @@ public class ButtonBuilding extends ButtonComponent {
 		case UPGRADE:
 			System.out.println("Upgrade");
 			break;
-		case IDK:
-			System.out.println("IDK");
-			break;
 		case COLLECT:
 			System.out.println("Collect");
 			break;
@@ -57,14 +53,14 @@ public class ButtonBuilding extends ButtonComponent {
 				new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(), gui.getAssets().playAssets.squareTex.getHeight()),
 				gui.getAssets()));
 			Engine.removeBuildings(building);
-			building.removeGui();
+			building.reset();
 			break;
 		case BUILD:
 			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(), new Vector2f(0, 0),
 					new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(), gui.getAssets().playAssets.squareTex.getHeight()),
 					gui.getAssets()));
 			Engine.removeBuildings(building);
-			building.removeGui();
+			building.reset();
 			break;
 		}
 	}

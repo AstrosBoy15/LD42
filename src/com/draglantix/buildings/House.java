@@ -13,7 +13,7 @@ import com.draglantix.main.Configs;
 public class House extends Building {
 
 	private static final int NUM_ANIMATIONS = 0;
-	protected final static int NUM_OF_GUIS = 5;
+	protected final static int NUM_OF_GUIS = 4;
 
 	private boolean isSelected = false;
 
@@ -50,7 +50,7 @@ public class House extends Building {
 		isSelected = true;
 	}
 
-	public void removeGui() {
+	public void reset() {
 		Engine.removeGuis(guis);
 		Engine.removeFonts(fonts);
 		isSelected = false;

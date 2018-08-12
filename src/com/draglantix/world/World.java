@@ -98,7 +98,7 @@ public class World {
 			}
 			isMouseLeftButtonDown = true;
 			if (currentSelectedBuilding != null && !hasCollidedRight) {
-				currentSelectedBuilding.removeGui();
+				currentSelectedBuilding.reset();
 				currentSelectedBuilding = null;
 			}
 		} else {
@@ -113,7 +113,7 @@ public class World {
 				for (Building building : Engine.getBuildings()) {
 					if (building.checkForCollisions()) {
 						if (currentSelectedBuilding != null) {
-							currentSelectedBuilding.removeGui();
+							currentSelectedBuilding.reset();
 						}
 						currentSelectedBuilding = building;
 						currentSelectedBuilding.update();

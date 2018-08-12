@@ -50,7 +50,7 @@ public class Empty extends Building {
 		isSelected = true;
 	}
 
-	public void removeGui() {
+	public void reset() {
 		Engine.removeGuis(guis);
 		Engine.removeFonts(fonts);
 		isSelected = false;

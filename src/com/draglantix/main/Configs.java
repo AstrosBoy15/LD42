@@ -9,8 +9,8 @@ public class Configs {
 	public static final boolean PRINT_FPS = true;
 
 	public static final int FPS_CAP = 60;
-	public static final int WIDTH = 1000;
-	public static final int HEIGHT = 750;
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
 
 	public static final int TILE_SIZE = 16;
 

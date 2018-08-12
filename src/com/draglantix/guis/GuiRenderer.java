@@ -38,7 +38,7 @@ public class GuiRenderer {
 	protected void loadUniforms(Gui gui) {
 		Maths.createProjectionMatrix(Window.getWidth(), Window.getHeight());
 		gui.updateTransformationMatrix(gui.getPosition(), gui.getRotation(), gui.getScale());
-		shader.loadTransformationMatrix(Maths.getFinalMatrix(gui.getTransformationMatrix(), assets, gui.isStatic()));
+		shader.loadTransformationMatrix(Maths.getFinalMatrix(gui.getTransformationMatrix(), assets, !gui.isStatic()));
 		shader.loadFade(gui.getAlpha());
 		shader.loadColour(gui.getColour());
 	}

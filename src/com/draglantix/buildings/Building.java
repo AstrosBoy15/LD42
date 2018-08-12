@@ -52,7 +52,7 @@ public abstract class Building extends ObjectData {
 					new Vector2f(position.x + guiScale.x / 2 * Configs.worldScale,
 							position.y - guiScale.y / 2 * Configs.worldScale * (2 * i + 1)),
 					new Vector2f(0, 0), new Vector2f(guiScale.x, guiScale.y), 0.75f,
-					new Vector3f(.15f, .15f, .15f), true, true, assets);
+					new Vector3f(.15f, .15f, .15f), true, false, assets);
 			gui.setComponent(new ButtonBuilding(i, gui, this));
 			guis[i] = gui;
 
@@ -66,12 +66,9 @@ public abstract class Building extends ObjectData {
 				msg = "Upgrade";
 				break;
 			case 2:
-				msg = "IDK";
-				break;
-			case 3:
 				msg = "Collect";
 				break;
-			case 4:
+			case 3:
 				msg = "Destroy";
 				break;
 			default:
@@ -92,7 +89,7 @@ public abstract class Building extends ObjectData {
 					new Vector2f(position.x + guiScale.x / 2 * Configs.worldScale,
 							position.y - guiScale.y / 2 * Configs.worldScale * (2 * i + 1)),
 					new Vector2f(0, 0), new Vector2f(guiScale.x, guiScale.y), 0.75f,
-					new Vector3f(.15f, .15f, .15f), true, true, assets);
+					new Vector3f(.15f, .15f, .15f), true, false, assets);
 			guis[i] = gui;
 
 			String msg;
@@ -136,7 +133,7 @@ public abstract class Building extends ObjectData {
 
 	public abstract void update();
 
-	public abstract void removeGui();
+	public abstract void reset();
 
 	public boolean checkForCollisions() {
 		if (Window.getInput().getMousePos().x - Configs.WIDTH / 2 < bounding.getMax().x
