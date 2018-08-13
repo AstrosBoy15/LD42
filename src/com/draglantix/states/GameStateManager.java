@@ -58,9 +58,14 @@ public class GameStateManager {
 			currentStateClass = pauseState;
 			pauseState.init();
 			break;
-		default:
+		case MENU:
 			currentStateClass.cleanUp();
 			currentStateClass = menuState;
+			menuState.init();
+			break;
+		default:
+			currentStateClass.cleanUp();
+			currentStateClass = null;
 			break;
 		}
 	}

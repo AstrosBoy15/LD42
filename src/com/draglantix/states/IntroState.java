@@ -17,7 +17,7 @@ public class IntroState extends GameState {
 	}
 
 	public void init() {
-		if(!hasInit) {
+		if (!hasInit) {
 			assets.introAssets.init();
 			hasInit = true;
 		}
@@ -25,8 +25,8 @@ public class IntroState extends GameState {
 
 	protected void tick() {
 
-		if(changeState || Window.getInput().isKeyPressed(GLFW.GLFW_KEY_SPACE)) {
-			gsm.setState(State.PLAY);
+		if (changeState) {
+			gsm.setState(State.MENU);
 		}
 		update();
 		Engine.tickIntro();
@@ -38,26 +38,26 @@ public class IntroState extends GameState {
 	}
 
 	protected void update() {
-		if(increase) {
+		if (increase) {
 			assets.introAssets.introSplash.setAlpha(assets.introAssets.introSplash.getAlpha() + 0.01f);
 		} else {
 			assets.introAssets.introSplash.setAlpha(assets.introAssets.introSplash.getAlpha() - 0.01f);
 		}
 
-		if(assets.introAssets.introSplash.getAlpha() >= 1) {
+		if (assets.introAssets.introSplash.getAlpha() >= 1) {
 			assets.introAssets.introSplash.setAlpha(1);
 			increase = false;
 		}
 
-		if(assets.introAssets.introSplash.getAlpha() <= 0) {
+		if (assets.introAssets.introSplash.getAlpha() <= 0) {
 			assets.introAssets.introSplash.setAlpha(0);
-			if(!increase) {
+			if (!increase) {
 				changeState = true;
 			}
 			increase = true;
 		}
 	}
-	
+
 	protected void cleanUp() {
 		assets.introAssets.cleanUp();
 	}
