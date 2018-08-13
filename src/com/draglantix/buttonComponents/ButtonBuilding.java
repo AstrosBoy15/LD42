@@ -7,8 +7,11 @@ import com.draglantix.buildings.Building;
 import com.draglantix.buildings.Empty;
 import com.draglantix.buildings.House;
 import com.draglantix.engine.Engine;
+import com.draglantix.font.Font;
 import com.draglantix.guis.Gui;
 import com.draglantix.main.Configs;
+import com.draglantix.statistics.Statistics;
+import com.draglantix.util.Timer;
 import com.draglantix.window.Window;
 
 public class ButtonBuilding extends ButtonComponent {
@@ -17,17 +20,23 @@ public class ButtonBuilding extends ButtonComponent {
 	private Gui gui;
 	private Building building;
 	private Vector3f color;
+	protected Gui[] guis;
+	protected Font[] fonts;
+	protected Vector2f guiScale = new Vector2f(75, 20);
 
 	public static final int BLANK = 0;
 	public static final int UPGRADE = 1;
 	public static final int COLLECT = 2;
 	public static final int DESTROY = 3;
 	public static final int BUILD = 5;
-	
+
+	private Timer timer;
+
 	public ButtonBuilding(int num, Gui gui, Building building) {
 		this.num = num;
 		this.gui = gui;
 		this.building = building;
+		timer = new Timer();
 	}
 
 	public void tick() {
@@ -39,28 +48,36 @@ public class ButtonBuilding extends ButtonComponent {
 	}
 
 	public void update() {
-		switch(num) {
+		switch (num) {
 		case BLANK:
 			break;
 		case UPGRADE:
 			System.out.println("Upgrade");
+			building.reset();
 			break;
 		case COLLECT:
-			System.out.println("Collect");
+			if (building.getType() == Building.HOUSE) {
+				Statistics.addGold((int) (timer.getDelta() * 5));
+
+			} else if (building.getType() == Building.FARMLAND) {
+				Statistics.addFood((int) (timer.getDelta() * 5));
+			}
+			building.reset();
 			break;
 		case DESTROY:
-			Engine.addBuildings(new Empty(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(), new Vector2f(0, 0),
-				new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(), gui.getAssets().playAssets.squareTex.getHeight()),
-				gui.getAssets()));
+			Engine.addBuildings(new Empty(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
+					new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
+							gui.getAssets().playAssets.squareTex.getHeight()),
+					gui.getAssets()));
 			Engine.removeBuildings(building);
 			building.reset();
 			break;
 		case BUILD:
-			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(), new Vector2f(0, 0),
-					new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(), gui.getAssets().playAssets.squareTex.getHeight()),
-					gui.getAssets()));
-			Engine.removeBuildings(building);
-			building.reset();
+			((Empty) (building)).isCreateSelected = true;
+//			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
+//					new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
+//							gui.getAssets().playAssets.squareTex.getHeight()),
+//					gui.getAssets()));
 			break;
 		}
 	}
@@ -81,6 +98,22 @@ public class ButtonBuilding extends ButtonComponent {
 			return true;
 		}
 		return false;
+	}
+
+	public void addGuis() {
+		Engine.addGuis(guis);
+	}
+	
+	public void addFonts() {
+		Engine.addFonts(fonts);
+	}
+
+	public void removeGuis() {
+		Engine.addGuis(guis);
+	}
+	
+	public void removeFonts() {
+		Engine.removeFonts(fonts);
 	}
 
 }

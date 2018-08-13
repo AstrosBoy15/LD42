@@ -3,7 +3,6 @@ package com.draglantix.assets;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-import com.draglantix.buildings.Building;
 import com.draglantix.engine.Camera;
 import com.draglantix.engine.Engine;
 import com.draglantix.guis.Gui;
@@ -19,8 +18,6 @@ import com.draglantix.window.Window;
 import com.draglantix.world.World;
 
 public class PlayStateAssets {
-
-	public Building player;
 
 	public Camera camera;
 
@@ -69,12 +66,12 @@ public class PlayStateAssets {
 		bg2Tex = new Texture("res/textures/world/bg2.png");
 		skyTex = new Texture("res/textures/world/sky.png");
 
-		Configs.worldScale = 2;
+		Configs.worldScale = 1.5f;
 //		Configs.worldWidth = mapTex.getWidth() * Configs.worldScale * 2;
 //		Configs.worldHeight = mapTex.getHeight() * Configs.worldScale * 2;
 
-		Configs.worldWidth = 384 * Configs.worldScale;
-		Configs.worldHeight = 384 * Configs.worldScale;
+		Configs.worldWidth = (int) (384 * Configs.worldScale);
+		Configs.worldHeight = (int) (384 * Configs.worldScale);
 
 		tileSet = new SpriteSheet("res/textures/world/tileSet.png");
 

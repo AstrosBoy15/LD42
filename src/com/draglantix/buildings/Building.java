@@ -22,6 +22,8 @@ public abstract class Building extends ObjectData {
 	protected Vector2f guiScale = new Vector2f(75, 20);
 	protected int type;
 	
+	public static final int TYPES_OF_BUILDINGS = 11;
+	
 	public static final int EMPTY = 0;
 	public static final int HOUSE = 1;
 	public static final int CHURCH = 2;
@@ -32,6 +34,7 @@ public abstract class Building extends ObjectData {
 	public static final int TENEMENT = 7;
 	public static final int FACTORY = 8;
 	public static final int RAILROAD = 9;
+	public static final int FARMLAND = 10;
 
 	public Building(int texture, int numAnimations, Vector2f position, Vector2f rotation, Vector2f scale,
 			Polygon bounding, String name, int type, Assets assets) {
@@ -49,8 +52,8 @@ public abstract class Building extends ObjectData {
 	public void createMultiGUI() {
 		for (int i = 0; i < guis.length; i++) {
 			Gui gui = new Gui(assets.playAssets.squareTex.getTextureID(),
-					new Vector2f(position.x + guiScale.x / 2 * Configs.worldScale,
-							position.y - guiScale.y / 2 * Configs.worldScale * (2 * i + 1)),
+					new Vector2f(position.x + guiScale.x,
+							position.y - guiScale.y * (2 * i + 1)),
 					new Vector2f(0, 0), new Vector2f(guiScale.x, guiScale.y), 0.75f,
 					new Vector3f(.15f, .15f, .15f), true, false, assets);
 			gui.setComponent(new ButtonBuilding(i, gui, this));
@@ -83,11 +86,12 @@ public abstract class Building extends ObjectData {
 			fonts[i] = font;
 		}
 	}
+	
 	public void createEmptyGUI() {
 		for (int i = 0; i < guis.length; i++) {
 			Gui gui = new Gui(assets.playAssets.squareTex.getTextureID(),
-					new Vector2f(position.x + guiScale.x / 2 * Configs.worldScale,
-							position.y - guiScale.y / 2 * Configs.worldScale * (2 * i + 1)),
+					new Vector2f(position.x + guiScale.x,
+							position.y - guiScale.y * (2 * i + 1)),
 					new Vector2f(0, 0), new Vector2f(guiScale.x, guiScale.y), 0.75f,
 					new Vector3f(.15f, .15f, .15f), true, false, assets);
 			guis[i] = gui;
@@ -147,6 +151,10 @@ public abstract class Building extends ObjectData {
 			return true;
 		}
 		return false;
+	}
+	
+	public int getType() {
+		return type;
 	}
 
 }

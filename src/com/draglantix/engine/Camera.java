@@ -29,7 +29,7 @@ public class Camera {
 
 	public void move() {
 
-		updateZoom();
+		//updateZoom();
 
 		Vector2f delta = new Vector2f();
 		if (Window.getInput().isMouseButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) {

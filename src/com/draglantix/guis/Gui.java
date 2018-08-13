@@ -7,8 +7,9 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import com.draglantix.assets.Assets;
-import com.draglantix.buttonComponents.ButtonComponent;
 import com.draglantix.buttonComponents.ButtonBuilding;
+import com.draglantix.buttonComponents.ButtonComponent;
+import com.draglantix.buttonComponents.ButtonCreate;
 import com.draglantix.collsion.Polygon;
 import com.draglantix.main.Configs;
 import com.draglantix.util.ObjectData;
@@ -46,6 +47,8 @@ public class Gui extends ObjectData {
 			component.tick();
 			if (component instanceof ButtonBuilding) {
 				currentColour = ((ButtonBuilding) component).getColour();
+			} else if (component instanceof ButtonCreate) {
+				currentColour = ((ButtonCreate) component).getColour();
 			}
 		}
 	}
