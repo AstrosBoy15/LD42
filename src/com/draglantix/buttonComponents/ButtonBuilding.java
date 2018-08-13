@@ -5,9 +5,7 @@ import org.joml.Vector3f;
 
 import com.draglantix.buildings.Building;
 import com.draglantix.buildings.Empty;
-import com.draglantix.buildings.House;
 import com.draglantix.engine.Engine;
-import com.draglantix.font.Font;
 import com.draglantix.guis.Gui;
 import com.draglantix.main.Configs;
 import com.draglantix.statistics.Statistics;
@@ -20,9 +18,6 @@ public class ButtonBuilding extends ButtonComponent {
 	private Gui gui;
 	private Building building;
 	private Vector3f color;
-	protected Gui[] guis;
-	protected Font[] fonts;
-	protected Vector2f guiScale = new Vector2f(75, 20);
 
 	public static final int BLANK = 0;
 	public static final int UPGRADE = 1;
@@ -74,10 +69,6 @@ public class ButtonBuilding extends ButtonComponent {
 			break;
 		case BUILD:
 			((Empty) (building)).isCreateSelected = true;
-//			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-//					new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-//							gui.getAssets().playAssets.squareTex.getHeight()),
-//					gui.getAssets()));
 			break;
 		}
 	}
@@ -98,22 +89,6 @@ public class ButtonBuilding extends ButtonComponent {
 			return true;
 		}
 		return false;
-	}
-
-	public void addGuis() {
-		Engine.addGuis(guis);
-	}
-	
-	public void addFonts() {
-		Engine.addFonts(fonts);
-	}
-
-	public void removeGuis() {
-		Engine.addGuis(guis);
-	}
-	
-	public void removeFonts() {
-		Engine.removeFonts(fonts);
 	}
 
 }

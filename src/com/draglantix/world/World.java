@@ -1,7 +1,5 @@
 package com.draglantix.world;
 
-import java.util.Random;
-
 import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;
 
@@ -21,17 +19,14 @@ public class World {
 
 	private Assets assets;
 
-	private Random rand;
-
 	private boolean isMouseLeftButtonDown = false;
 	private boolean isMouseRightButtonDown = false;
 	private boolean hasCollidedRight = false;
-	private boolean hasCollidedLeft = false;
+	//private boolean hasCollidedLeft = false;
 	private Building currentSelectedBuilding = null;
 
 	public World(Assets assets) {
 		this.assets = assets;
-		rand = new Random();
 	}
 
 	public void init() {
