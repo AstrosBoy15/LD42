@@ -47,22 +47,22 @@ public class ButtonBuilding extends ButtonComponent {
 		case BLANK:
 			break;
 		case UPGRADE:
-			System.out.println("Upgrade");
+			building.upgrade();	
 			building.reset();
 			break;
 		case COLLECT:
-			if (building.getType() == Building.HOUSE) {
+			if (building.getType() == Building.MINE) {
 				Statistics.addGold((int) (timer.getDelta() * 5));
 
-			} else if (building.getType() == Building.FARMLAND) {
+			} else if (building.getType() == Building.MILL) {
 				Statistics.addFood((int) (timer.getDelta() * 5));
 			}
 			building.reset();
 			break;
 		case DESTROY:
-			Engine.addBuildings(new Empty(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-					new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-							gui.getAssets().playAssets.squareTex.getHeight()),
+			Engine.addBuildings(new Empty(gui.getAssets().playAssets.blankTex.getTextureID(), building.getPosition(),
+					new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.blankTex.getWidth(),
+							gui.getAssets().playAssets.blankTex.getHeight()),
 					gui.getAssets()));
 			Engine.removeBuildings(building);
 			building.reset();

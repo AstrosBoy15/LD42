@@ -22,20 +22,16 @@ public abstract class Building extends ObjectData {
 	protected Vector2f guiScale = new Vector2f(75, 20);
 	protected int type;
 	
-	public static final int TYPES_OF_BUILDINGS = 11;
+	public static final int TYPES_OF_BUILDINGS = 5;
 	
 	public static final int EMPTY = 0;
-	public static final int HOUSE = 1;
-	public static final int CHURCH = 2;
-	public static final int TAVERN = 3;
-	public static final int MILL = 4;
-	public static final int CEMETERY = 5;
-	public static final int SCHOOL = 6;
-	public static final int TENEMENT = 7;
-	public static final int FACTORY = 8;
-	public static final int RAILROAD = 9;
-	public static final int FARMLAND = 10;
-
+	public static final int MINE = 1;
+	public static final int HOUSE = 2;
+	public static final int MILL = 3;
+	public static final int ROAD = 4;
+	
+	protected int upgradeStage = 1;
+	
 	public Building(int texture, int numAnimations, Vector2f position, Vector2f rotation, Vector2f scale,
 			Polygon bounding, String name, int type, Assets assets) {
 		super(texture, numAnimations, position, rotation, scale.mul(Configs.worldScale), bounding, assets);
@@ -133,7 +129,15 @@ public abstract class Building extends ObjectData {
 		}
 	}
 	
-	
+	public void upgrade() {
+		if(upgradeStage < 3) {
+			upgradeStage ++;
+		}
+		
+		setTexture(assets.playAssets.currentBuilding(this.type, upgradeStage).getTextureID());
+		
+		System.out.println(assets.playAssets.mine2Tex.getTextureID() + "    " + this.getTexture());
+	}
 
 	public abstract void update();
 

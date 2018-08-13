@@ -32,6 +32,7 @@ public class Empty extends Building {
 				new float[] { position.y - scale.y * Configs.worldScale, position.y - scale.y * Configs.worldScale,
 						position.y + scale.y * Configs.worldScale },
 				false), "Empty", EMPTY, assets);
+		
 		guis = new Gui[NUM_OF_GUIS];
 		fonts = new Font[NUM_OF_GUIS];
 		createEmptyGUI();
@@ -99,17 +100,8 @@ public class Empty extends Building {
 			String msg;
 
 			switch (i) {
-			case Building.CEMETERY:
-				msg = "Cemetery";
-				break;
-			case Building.CHURCH:
-				msg = "Church";
-				break;
-			case Building.FACTORY:
-				msg = "Factory";
-				break;
-			case Building.FARMLAND:
-				msg = "Farmland";
+			case Building.MINE:
+				msg = "Mine";
 				break;
 			case Building.HOUSE:
 				msg = "House";
@@ -117,17 +109,8 @@ public class Empty extends Building {
 			case Building.MILL:
 				msg = "Mill";
 				break;
-			case Building.RAILROAD:
-				msg = "Railroad";
-				break;
-			case Building.SCHOOL:
-				msg = "School";
-				break;
-			case Building.TAVERN:
-				msg = "Tavern";
-				break;
-			case Building.TENEMENT:
-				msg = "Tenement";
+			case Building.ROAD:
+				msg = "Road";
 				break;
 			default:
 				msg = "Create";

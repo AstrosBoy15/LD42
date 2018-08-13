@@ -4,12 +4,15 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import com.draglantix.buildings.Building;
-import com.draglantix.buildings.FarmLand;
 import com.draglantix.buildings.House;
+import com.draglantix.buildings.Mill;
+import com.draglantix.buildings.Mine;
+import com.draglantix.buildings.Road;
 import com.draglantix.engine.Engine;
 import com.draglantix.font.Font;
 import com.draglantix.guis.Gui;
 import com.draglantix.main.Configs;
+import com.draglantix.models.Texture;
 import com.draglantix.window.Window;
 
 public class ButtonCreate extends ButtonComponent {
@@ -43,70 +46,42 @@ public class ButtonCreate extends ButtonComponent {
 	}
 
 	public void update() {
+		
+		Texture tex;
+		
 		switch (num) {
-		case Building.CEMETERY:
-//			Engine.addBuildings(new Cemetery(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-//			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-//					gui.getAssets().playAssets.squareTex.getHeight()),
-//			gui.getAssets()));
-			break;
-		case Building.CHURCH:
-//			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-//			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-//					gui.getAssets().playAssets.squareTex.getHeight()),
-//			gui.getAssets()));
-			break;
-		case Building.FACTORY:
-//			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-//			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-//					gui.getAssets().playAssets.squareTex.getHeight()),
-//			gui.getAssets()));
-			break;
-		case Building.FARMLAND:
-			Engine.addBuildings(new FarmLand(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-					gui.getAssets().playAssets.squareTex.getHeight()),
+		
+		case Building.MINE:
+			tex = gui.getAssets().playAssets.mine1Tex;
+			Engine.addBuildings(new Mine(tex.getTextureID(), building.getPosition(),
+				new Vector2f(0, 0), new Vector2f(tex.getWidth(),tex.getHeight()),
 			gui.getAssets()));
 			Engine.removeBuildings(building);
 			building.reset();
 			break;
 		case Building.HOUSE:
-			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-					gui.getAssets().playAssets.squareTex.getHeight()),
+			tex = gui.getAssets().playAssets.house1Tex;
+			Engine.addBuildings(new House(tex.getTextureID(), building.getPosition(),
+				new Vector2f(0, 0), new Vector2f(tex.getWidth(),tex.getHeight()),
 			gui.getAssets()));
 			Engine.removeBuildings(building);
 			building.reset();
 			break;
 		case Building.MILL:
-//			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-//			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-//					gui.getAssets().playAssets.squareTex.getHeight()),
-//			gui.getAssets()));
+			tex = gui.getAssets().playAssets.mill1Tex;
+			Engine.addBuildings(new Mill(tex.getTextureID(), building.getPosition(),
+				new Vector2f(0, 0), new Vector2f(tex.getWidth(),tex.getHeight()),
+			gui.getAssets()));
+			Engine.removeBuildings(building);
+			building.reset();
 			break;
-		case Building.RAILROAD:
-//			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-//			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-//					gui.getAssets().playAssets.squareTex.getHeight()),
-//			gui.getAssets()));
-			break;
-		case Building.SCHOOL:
-//			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-//			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-//					gui.getAssets().playAssets.squareTex.getHeight()),
-//			gui.getAssets()));
-			break;
-		case Building.TAVERN:
-//			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-//			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-//					gui.getAssets().playAssets.squareTex.getHeight()),
-//			gui.getAssets()));
-			break;
-		case Building.TENEMENT:
-//			Engine.addBuildings(new House(gui.getAssets().playAssets.squareTex.getTextureID(), building.getPosition(),
-//			new Vector2f(0, 0), new Vector2f(gui.getAssets().playAssets.squareTex.getWidth(),
-//					gui.getAssets().playAssets.squareTex.getHeight()),
-//			gui.getAssets()));
+		case Building.ROAD:	
+			tex = gui.getAssets().playAssets.road1Tex;
+			Engine.addBuildings(new Road(tex.getTextureID(), building.getPosition(),
+			new Vector2f(0, 0), new Vector2f(tex.getWidth(),tex.getHeight()),
+			gui.getAssets()));
+			Engine.removeBuildings(building);
+			building.reset();
 			break;
 		default:
 			break;

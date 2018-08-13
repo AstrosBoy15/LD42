@@ -10,20 +10,20 @@ import com.draglantix.font.Font;
 import com.draglantix.guis.Gui;
 import com.draglantix.main.Configs;
 
-public class FarmLand extends Building {
+public class Mine extends Building {
 
 	private static final int NUM_ANIMATIONS = 0;
 	protected final static int NUM_OF_GUIS = 4;
 
 	private boolean isSelected = false;
 
-	public FarmLand(int texture, Vector2f position, Vector2f rotation, Vector2f scale, Assets assets) {
+	public Mine(int texture, Vector2f position, Vector2f rotation, Vector2f scale, Assets assets) {
 		super(texture, NUM_ANIMATIONS, position, rotation, scale, new Polygon(
 				new float[] { position.x + scale.x * Configs.worldScale, position.x - scale.x * Configs.worldScale,
 						position.x - scale.x * Configs.worldScale },
 				new float[] { position.y - scale.y * Configs.worldScale, position.y - scale.y * Configs.worldScale,
 						position.y + scale.y * Configs.worldScale },
-				false), "Farm Land", FARMLAND, assets);
+				false), "Mine", MINE, assets);
 		guis = new Gui[NUM_OF_GUIS];
 		fonts = new Font[NUM_OF_GUIS];
 		createMultiGUI();

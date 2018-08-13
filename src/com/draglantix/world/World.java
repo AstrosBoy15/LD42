@@ -6,8 +6,6 @@ import org.lwjgl.glfw.GLFW;
 import com.draglantix.assets.Assets;
 import com.draglantix.buildings.Building;
 import com.draglantix.buildings.Empty;
-import com.draglantix.buildings.FarmLand;
-import com.draglantix.buildings.House;
 import com.draglantix.engine.Engine;
 import com.draglantix.guis.Gui;
 import com.draglantix.main.Configs;
@@ -30,19 +28,7 @@ public class World {
 	}
 
 	public void init() {
-		House house = new House(assets.playAssets.squareTex.getTextureID(), new Vector2f(0, 0),
-				new Vector2f(0, 0), new Vector2f(16, 16), assets);
-
 		assets.playAssets.createCamera();
-
-		Empty empty = new Empty(assets.playAssets.squareTex.getTextureID(), new Vector2f(64, 64), new Vector2f(0, 0),
-				new Vector2f(assets.playAssets.squareTex.getWidth(), assets.playAssets.squareTex.getHeight()), assets);
-		House house2 = new House(assets.playAssets.squareTex.getTextureID(), new Vector2f(0, 128), new Vector2f(0, 0),
-				new Vector2f(assets.playAssets.squareTex.getWidth(), assets.playAssets.squareTex.getHeight()), assets);
-		FarmLand farmLand = new FarmLand(assets.playAssets.squareTex.getTextureID(), new Vector2f(128, 0), new Vector2f(0, 0),
-				new Vector2f(assets.playAssets.squareTex.getWidth(), assets.playAssets.squareTex.getHeight()), assets);
-		Engine.addBuildings(empty, house, house2, farmLand);
-
 		createMap();
 	}
 
@@ -51,12 +37,17 @@ public class World {
 		int numberOfTilesY = Configs.worldHeight / Configs.TILE_SIZE;
 		for (int x = -numberOfTilesX / 2; x < numberOfTilesX / 2; x++) {
 			for (int y = -numberOfTilesY / 2; y < numberOfTilesY / 2; y++) {
-				assets.playAssets.tileMap.setTile(new Tile(assets.playAssets.grassData, new Vector2f(
+				
+				Vector2f pos = new Vector2f(
 						(x * Configs.TILE_SIZE * Configs.worldScale + Configs.TILE_SIZE * Configs.worldScale / 2) * 2,
-						(y * Configs.TILE_SIZE * Configs.worldScale + Configs.TILE_SIZE * Configs.worldScale / 2) * 2),
-						new Vector2f(0, 0),
-						new Vector2f(Configs.TILE_SIZE * Configs.worldScale, Configs.TILE_SIZE * Configs.worldScale),
+						(y * Configs.TILE_SIZE * Configs.worldScale + Configs.TILE_SIZE * Configs.worldScale / 2) * 2);
+				
+				Vector2f scale = new Vector2f(Configs.TILE_SIZE * Configs.worldScale, Configs.TILE_SIZE * Configs.worldScale);
+				
+				assets.playAssets.tileMap.setTile(new Tile(assets.playAssets.sandData, pos,
+						new Vector2f(0, 0), scale,
 						assets), x, y);
+				Engine.addBuildings(new Empty(assets.playAssets.blankTex.getTextureID(), pos, new Vector2f(0, 0), new Vector2f(32, 32), assets));
 
 			}
 		}

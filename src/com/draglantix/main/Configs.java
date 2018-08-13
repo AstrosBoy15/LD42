@@ -12,7 +12,7 @@ public class Configs {
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
 
-	public static final int TILE_SIZE = 16;
+	public static final int TILE_SIZE = 32;
 
 	public static final Vector3f COLOUR_NULL = new Vector3f(-1, -1, -1);
 	public static final int TEXTURE_NULL = -1;
